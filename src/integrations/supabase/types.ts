@@ -14,114 +14,13 @@ export type Database = {
   }
   public: {
     Tables: {
-      profiles: {
-        Row: {
-          avatar_url: string | null
-          characters_read: number | null
-          created_at: string | null
-          current_level: string | null
-          id: string
-          rank: string | null
-          updated_at: string | null
-          username: string | null
-          xp: number | null
-        }
-        Insert: {
-          avatar_url?: string | null
-          characters_read?: number | null
-          created_at?: string | null
-          current_level?: string | null
-          id: string
-          rank?: string | null
-          updated_at?: string | null
-          username?: string | null
-          xp?: number | null
-        }
-        Update: {
-          avatar_url?: string | null
-          characters_read?: number | null
-          created_at?: string | null
-          current_level?: string | null
-          id?: string
-          rank?: string | null
-          updated_at?: string | null
-          username?: string | null
-          xp?: number | null
-        }
-        Relationships: []
-      }
-      reading_passages: {
-        Row: {
-          character_count: number | null
-          content: Json
-          created_at: string | null
-          id: string
-          level: string
-          title: string
-          topic: string
-          user_id: string
-        }
-        Insert: {
-          character_count?: number | null
-          content: Json
-          created_at?: string | null
-          id?: string
-          level: string
-          title: string
-          topic: string
-          user_id: string
-        }
-        Update: {
-          character_count?: number | null
-          content?: Json
-          created_at?: string | null
-          id?: string
-          level?: string
-          title?: string
-          topic?: string
-          user_id?: string
-        }
-        Relationships: []
-      }
-      vocabulary: {
-        Row: {
-          id: string
-          meaning: string
-          reading: string | null
-          saved_at: string | null
-          user_id: string
-          word: string
-          word_type: string | null
-        }
-        Insert: {
-          id?: string
-          meaning: string
-          reading?: string | null
-          saved_at?: string | null
-          user_id: string
-          word: string
-          word_type?: string | null
-        }
-        Update: {
-          id?: string
-          meaning?: string
-          reading?: string | null
-          saved_at?: string | null
-          user_id?: string
-          word?: string
-          word_type?: string | null
-        }
-        Relationships: []
-      }
+      [_ in never]: never
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      update_user_progress: {
-        Args: { p_characters_read: number; p_user_id: string }
-        Returns: undefined
-      }
+      [_ in never]: never
     }
     Enums: {
       [_ in never]: never
