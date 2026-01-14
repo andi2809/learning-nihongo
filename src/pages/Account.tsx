@@ -73,33 +73,33 @@ export default function Account() {
     try {
       // Fetch profile
       const { data: profileData, error: profileError } = await supabase
-        .from("profiles")
+        .from("profiles" as any)
         .select("*")
         .eq("id", user.id)
         .maybeSingle();
 
       if (profileError) throw profileError;
-      setProfile(profileData);
+      setProfile(profileData as unknown as Profile);
 
       // Fetch vocabulary
       const { data: vocabData, error: vocabError } = await supabase
-        .from("vocabulary")
+        .from("vocabulary" as any)
         .select("*")
         .eq("user_id", user.id)
         .order("saved_at", { ascending: false });
 
       if (vocabError) throw vocabError;
-      setVocabulary(vocabData || []);
+      setVocabulary((vocabData || []) as unknown as VocabularyItem[]);
 
       // Fetch passages
       const { data: passagesData, error: passagesError } = await supabase
-        .from("reading_passages")
+        .from("reading_passages" as any)
         .select("id, title, topic, level, character_count, created_at")
         .eq("user_id", user.id)
         .order("created_at", { ascending: false });
 
       if (passagesError) throw passagesError;
-      setPassages(passagesData || []);
+      setPassages((passagesData || []) as unknown as ReadingPassage[]);
     } catch (error) {
       console.error("Error fetching data:", error);
       toast.error("Failed to load account data");
@@ -111,7 +111,7 @@ export default function Account() {
   const deleteVocabulary = async (id: string) => {
     try {
       const { error } = await supabase
-        .from("vocabulary")
+        .from("vocabulary" as any)
         .delete()
         .eq("id", id);
 
