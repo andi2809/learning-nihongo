@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "@/contexts/AuthContext";
 import { Button } from "@/components/ui/button";
+import { Map } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
@@ -95,6 +96,10 @@ export default function Index() {
           </div>
           
           <nav className="flex items-center gap-4">
+            <Button variant="ghost" onClick={() => navigate("/roadmap")}>
+              <Map className="h-4 w-4 mr-2" />
+              Roadmap
+            </Button>
             {user ? (
               <>
                 <Button variant="ghost" onClick={() => navigate("/account")}>
