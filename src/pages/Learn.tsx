@@ -62,7 +62,7 @@ export default function Learn() {
   const fetchPassage = async () => {
     try {
       const { data, error } = await supabase
-        .from("reading_passages")
+        .from("reading_passages" as any)
         .select("*")
         .eq("id", id)
         .maybeSingle();
@@ -74,7 +74,7 @@ export default function Learn() {
         return;
       }
 
-      setPassage(data as PassageData);
+      setPassage(data as unknown as PassageData);
     } catch (error) {
       console.error("Error fetching passage:", error);
       toast.error("Failed to load passage");
@@ -88,12 +88,12 @@ export default function Learn() {
     
     try {
       const { data, error } = await supabase
-        .from("vocabulary")
+        .from("vocabulary" as any)
         .select("word")
         .eq("user_id", user.id);
 
       if (error) throw error;
-      setSavedWords(new Set(data?.map((v) => v.word) || []));
+      setSavedWords(new Set((data as any[])?.map((v) => v.word) || []));
     } catch (error) {
       console.error("Error fetching vocabulary:", error);
     }
@@ -103,7 +103,7 @@ export default function Learn() {
     if (!user) return;
 
     try {
-      const { error } = await supabase.from("vocabulary").insert({
+      const { error } = await supabase.from("vocabulary" as any).insert({
         user_id: user.id,
         word: token.word,
         reading: token.reading,
@@ -125,7 +125,7 @@ export default function Learn() {
     if (!user || !passage || readingComplete) return;
 
     try {
-      await supabase.rpc("update_user_progress", {
+      await (supabase.rpc as any)("update_user_progress", {
         p_user_id: user.id,
         p_characters_read: passage.character_count,
       });

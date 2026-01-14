@@ -52,7 +52,7 @@ export default function Index() {
 
       // Save the passage to database
       const { data: savedPassage, error: saveError } = await supabase
-        .from("reading_passages")
+        .from("reading_passages" as any)
         .insert({
           user_id: user.id,
           topic,
@@ -67,7 +67,7 @@ export default function Index() {
       if (saveError) throw saveError;
 
       toast.success("Reading passage generated!");
-      navigate(`/learn/${savedPassage.id}`);
+      navigate(`/learn/${(savedPassage as any).id}`);
     } catch (error) {
       console.error("Generation error:", error);
       toast.error(error instanceof Error ? error.message : "Failed to generate passage");
